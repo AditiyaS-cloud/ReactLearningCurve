@@ -1,0 +1,33 @@
+JSX is html like element, the main purpose of jsx is to help us write the react code in more readable way.
+
+
+Superpowers of JSX?
+•	Easy to maintain.
+•	Easy to read as compared to react.createElement.
+•	Easy to debug.
+•	Helps in prevention of XSS attacks, as it sanitaizes the values.
+
+Role of type attribute in script tag? What options can I use there?
+Type attribute specifies the type in the script. The type attributes identifies the content between the script and script tags.
+It has default type text/javascript.
+Other attributes are as follows.
+•	text/typescript: This specifies the type of language used or script used will be typescript.
+•	 text/ecmascript: This specifies the type of script will be according to ecma standards.
+•	text/babel: this type tell that script is babel type and required babel to transpile it.
+•	module: this type will tell the browser that this module or script can import or export other files from it or even modules inside it.
+•	Text/javascript: It is the basic standard of writing javascript code inside the <script> tag.
+
+
+// {TitleComponent} vs {<TitleComponent/>} vs {<TitleComponent></TitleComponent>} in JSX.
+// {TitleComponent} : this type of syntax represents a returning jsx, which is representing a react element.
+// <TitleComponent />: this type of syntax also represents returning jsx, which is also an functional component.
+// {<TitleComponent></TitleComponent>}: this represents a wrapped functional component and within TitleComponent,
+// we can have values, JSX or further functional component. 
+// e.g.
+// {<TitleComponent>
+// <Card>
+// <h1>This is a picture</h1>
+// <Description />
+// </Card>
+// </TitleComponent>
+// }
