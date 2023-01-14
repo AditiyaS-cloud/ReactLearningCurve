@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM  from "react-dom/client";
+
 const heading = React.createElement(
     "h1",
     {
@@ -20,7 +23,7 @@ const heading = React.createElement(
     //this is an array
     [heading, heading2]
   );
-  console.log(heading);
+
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
 

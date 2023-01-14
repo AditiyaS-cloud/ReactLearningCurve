@@ -1,0 +1,72 @@
+NPM is the world's largest software registry. Open source developers from every continent use npm to share and borrow packages, and many organizations use npm to manage private development as well.
+It consists of three main components (The website, the command line interface and registry).
+
+
+What is `Parcel/Webpack`? Why do we need it?
+
+Parcel is a web application bundler, differentiated by its developer experience. It offers blazing fast performance utilizing multicore processing, and requires zero configuration.
+There are different purposes/uses of a bundler such as asset optimization, fast asset generation, easy to configure, compatible with Scss and pug, these are few qualities of parcel and that is why we need it.
+
+
+What is `Parcel-Cache`?
+The .cache folder stores the information of your project when parcel builds it. So when you rebuild the project, it doesn’t have to reparse and re-analyse everything. It is the key reason why parcel can be fast in the development mode. Additional point, it is a bad idea to push .cache folder to git as it contains large number of files and the project can go out of sync.
+
+
+What is npx?
+npx is a Node.js command-line tool. It enables npm to execute command-line Node.js tools without having them to be installed globally. Command-line tools like mocha, gulp, react-native etc., are commonly installed globally using the -g flag with npm.
+
+
+
+What is difference between `dependencies` vs `devDependencies?
+The difference between these two, is that devDependencies are modules which are only required during development, while dependencies are modules which are also required at runtime. So while development we use both of them.
+
+
+What is Tree Shaking?
+Tree shaking is a form of Dead code elimination. The term "tree shaking" comes from the mental model of your application and its dependencies as a tree-like structure. Each node in the tree represents a dependency that provides distinct functionality for your app. In modern apps, these dependencies are brought in via static import statements like so:
+// Import all the array utilities!
+import arrayUtils from "array-utils";
+
+What is hot module replacement?
+Hot Module Replacement (HMR) is a feature to update the application modules without reloading and repainting everything.
+By using the HMR technique the application development becomes faster as fewer resources are loaded after saving the changes in the project.
+
+
+List down your favourite 5 superpowers of Parcel and describe any 3 of them in your own words.
+
+•	Blazing fast Bundle time
+•	Hot module replacement, 
+•	Automatic transforms
+•	Zero config code
+•	Hot module replacement
+•	Code minification.
+Blazing fast bundle time: Parcel uses worker processes to enable multicore compilation, and has a file system cache for fast rebuilds.
+
+ Hot module replacement: Parcel automatically updates the modules in the browser, no reloads required.
+
+Zero config code splitting: Using dynamic import() syntax, Parcel splits your output bundles, so that you load only that what is required on initial load.
+
+
+ What is `.gitignore`? What should we add and not add into it?
+A local .gitignore file is usually placed in the root directory of a project. You can also create a global .gitignore file and any entries in that file will be ignored in all of your Git repositories. 
+
+
+What is the difference between `package.json` and `package-lock.json`?
+Package.json : The package.json file has the metadata of the project, The project's basic information, such as package name, version, description, author, dependencies, etc., are present in package.json. The npm init command generates the package.json file.
+
+Package-lock.json: The package-lock.json file stores the exact version of dependencies. Dependencies and their locked versions are there in the package-lock.json file. The package-lock.json file is generated when you install a package to your project, Which is why we should not delete the package-lock.json.
+
+
+Why should I not modify `package-lock.json`?
+package-lock.json file contains the information about the dependencies and their versions used in the project. Deleting it would cause dependencies issues in the production environment.
+
+
+What is node modules? Is it a good idea to push that on git?
+Node modules is a folder that contains all the packages and dependencies used the development of the application. It is big file that we should not push to GitHub.
+
+
+What is the dist folder?
+dist folder is created when parcel creates the build for the application . It contains the HTML and CSS and JS with other files for the build.
+
+
+What is browser lists?
+browserlist is a list browsers that our application should support . It also covers the browser coverage over a geographical area.

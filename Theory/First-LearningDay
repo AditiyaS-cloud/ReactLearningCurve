@@ -1,0 +1,58 @@
+Emmet is a free add-on for your text editor that allows you to type shortcuts that are then expanded into full pieces of code. By using Emmet, email designers type less, saving both keystrokes and time when building a campaign. Also, relying on Emmet’s auto completion means fewer typos and missing tags, leading to more robust emails.
+
+
+ What is Difference between Library and Framework?
+Library: In the world of computer programming, a library is a compilation of prewritten code that we can use while developing software applications. These library collections are often used to simplify tasks. In simple words, we can say that a library function is a group of code that is reused frequently. Basically, it is a bunch of pre-defined functions and classes that software developers can utilise to simplify their tasks. Library also helps in reducing the time of creating the application.
+
+
+Framework: In the world of computer programming, a software framework authorises a significant way to create an application. Or in other words, we can say that it furnishes you with a shortcut when creating applications since it holds lots of tested functionality. One thing that we need to keep in mind with the software framework is that when we use a framework to build an application, we have to follow the standard and specific procedures accordingly.
+
+
+What is CDN and why do we use it?
+A CDN is a Content Delivery Network – a global network of servers that work together to provide ultra-fast delivery of Internet content, such as web pages and streaming video. 
+
+When people try to access content via the Internet, a CDN makes sure they get it delivered from servers nearest to them, so it arrives faster.
+
+Simple example: Jane and Khalid both watch the latest viral video. Jane’s video is delivered from a datacentre in San Francisco, because that’s where she lives. Khalid’s video is delivered from a datacentre in Singapore, because that’s where he is at the moment.
+
+We use CDN for following reasons
+1 Lower latency and faster performance.
+2 Better security and DDoS protection.
+3 Traditional web hosts are unable to keep up with the pace of change.
+4 SEO advantage.
+5 More affordable.
+6 Reliable.
+
+
+Why React is called react?
+React was developed for applications (Facebook) that have constantly changing data. Since React is a front-end framework or the “View” in MVC, this means that as the user clicks around and changes the app’s data, the view should “react” or change with those user events. User events being mouse clicks, typing, submitting a form.
+
+
+
+What is cross origin in script tag?
+The crossorigin attribute sets the mode of the request to an HTTP CORS Request.
+
+Web pages often make requests to load resources on other servers. Here is where CORS comes in.
+
+A cross-origin request is a request for a resource (e.g. style sheets, iframes, images, fonts, or scripts) from another domain.
+
+CORS is used to manage cross-origin requests.
+
+CORS stands for Cross-Origin Resource Sharing, and is a mechanism that allows resources on a web page to be requested from another domain outside their own domain. It defines a way of how a browser and server can interact to determine whether it is safe to allow the cross-origin request. CORS allows servers to specify who can access the assets on the server, among many other things.
+
+
+What is difference between React and ReactDOM?
+
+React is a core module, but ReactDOM is specially used for web development and React Native is also there which is used for mobile development.
+
+
+What is difference between react.development.js and react.production.js files via CDN?
+ Development build runs the code as a Development environment and it is very slow. The production environment executes the code and is used by developers and QA people It Development, supports.
+Production build is for running the code on client browsers with more performance improvements.
+•	 It has separate bundle files for app and vendor instead of a single bundle file
+•	 Minification and compression of JavaScript and HTML resources to reduce the size of a file.
+•	 Source Map can be disabled at runtime to reduce the size of the code.
+•	Also, Gzipping code to compress and reduce the size.
+
+What is the difference between Async and Defer?
+async and defer both load JavaScript asynchronously without render blocking, but async executes as soon as possible while defer runs in sequence toward the end of the loading process, just before the DOMContentLoaded event.
