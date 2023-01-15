@@ -1,12 +1,15 @@
-import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
+import { restaurantList } from "../../constants";
+import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-import { RESTAURANT_API } from "../../constants";
+import { Link } from "react-router-dom";
 
 function filterData(searchText, restaurants) {
-  return restaurants.filter((x) => {
-    return x?.data?.name?.toLowerCase().includes(searchText.toLowerCase());
-  });
+  const filterData = restaurants.filter((restaurant) =>
+    restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
+  );
+
+  return filterData;
 }
 
 const Body = () => {
@@ -15,53 +18,69 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    getRestaurantList();
+    getRestaurants();
   }, []);
 
-  async function getRestaurantList() {
-    try {
-      let data = await fetch(RESTAURANT_API);
+  async function getRestaurants() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
 
-      let fetchJson = await data.json();
-
-      setAllRestaurants(fetchJson?.data?.cards[2]?.data?.data?.cards);
-      setFilteredRestaurants(fetchJson?.data?.cards[2]?.data?.data?.cards);
-    } catch (error) {
-      console.log("There was an error while fetching restaurant ddata", error);
-    }
+    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
 
-  return allRestaurants?.length === 0 ? (
+  // not render component (Early return)
+  if (!allRestaurants) return null;
+
+  return allRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <>
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="search"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <button
-          className="search-btn"
-          onClick={() => {
-            const data = filterData(searchText, allRestaurants);
-            setFilteredRestaurants(data);
-          }}
-        >
-          {" "}
-          Search
-        </button>
+      <div className="section">
+        <img
+          className="sectionImage"
+          src="https://thebelgianwaffle.co/wp-content/uploads/2019/12/6.jpg"
+        ></img>
+        <div className="search-section">
+          <input
+            type="search"
+            placeholder="EXPLORE OUR OFFERINGS"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          ></input>
+          <button
+            onClick={() => {
+              //need to filter the data
+              const data = filterData(searchText, allRestaurants);
+              // update the state - restaurants
+              setFilteredRestaurants(data);
+            }}
+          >
+            Indulge
+          </button>
+        </div>
       </div>
-      <div className="restaurant-list">
-        {filteredRestaurants.length === 0
-          ? "No data found"
-          : filteredRestaurants.map((restaurant) => {
-              return (
-                <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
-              );
-            })}
+      <div className="main">
+        <div className="main-head">
+          <h1 id="slogan">Your Personal Chocolate Room🍫🥳</h1>
+          <h2 id="slogan">The easiest way to get escaped</h2>
+        </div>
+        <div className="main-content">
+          {filteredRestaurants.map((restaurant) => {
+            return (
+              <Link
+                to={"/restaurant/" + restaurant.data.id}
+                key={restaurant.data.id}
+              >
+                <RestaurantCard {...restaurant.data} />
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </>
   );

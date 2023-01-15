@@ -1,18 +1,28 @@
-import { IMG_CDN_URL } from "../../constants";
+import {IMG_CDN_URL} from '../../constants';
 
-const RestaurantCard = ({ name, cuisines, cloudinaryImageId, lastMileTravelString }) => {
+export const RestaurantCard = ({
+    name,
+    cuisines,
+    avgRating,
+    costForTwoString,
+    cloudinaryImageId,
+  }) => {
     return (
-        <div className='card'>
-            <img
-                src={
-                    IMG_CDN_URL + cloudinaryImageId
-                }
-            />
-            <h2>{name}</h2>
-            <h3>{cuisines.join(", ")}</h3>
-            <h4>{lastMileTravelString} minutes</h4>
+      <div className="card">
+        <img src={IMG_CDN_URL + cloudinaryImageId}></img>
+        <div className="card-in">
+          <h2>{name}</h2>
+          <h4>{cuisines.join(", ")}</h4>
+          <button className={avgRating < 3 ? "badRating" : "goodRating"}>
+            {avgRating}
+          </button>
+          <div className="card-price-order">
+            <h5>{costForTwoString}</h5>
+            <button>Order now</button>
+          </div>
         </div>
-    )
-}
+      </div>
+    );
+  };
 
-export default RestaurantCard;
+export default RestaurantCard; 
