@@ -11,3 +11,7 @@ Some important points to be remembered while cloning this respository. Ater succ
 I have given path for running app in package.json file inside "scripts", you can change it as per your convenience and run npm run start.
 Also you can change port number or remove if app in not running in given port number
 If you want to use direct command "npx parcel "to run app, then remove "start" and "build" from "scripts". Just give npx parcel
+
+## HOME PAGE
+
+![HOME](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/HOME_PAGE.jpg?raw=true)
