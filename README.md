@@ -12,6 +12,14 @@ I have given path for running app in package.json file inside "scripts", you can
 Also you can change port number or remove if app in not running in given port number
 If you want to use direct command "npx parcel "to run app, then remove "start" and "build" from "scripts". Just give npx parcel
 
-## HOME PAGE
+## HOME PAGE/RESTAURANTS LIST PAGE
 
 ![HOME](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/HOME_PAGE.jpg?raw=true)
+
+## RESTAURANT MENUS PAGE
+
+![MENU](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/RESTAURANT_MENU.jpg?raw=true)
+
+## SHIMMER EFFECT PAGE
+
+![SHIMMER](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/SHIMMER_EFFECT.jpg?raw=true)
