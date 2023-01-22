@@ -1,34 +1,45 @@
 import { useState, useEffect } from "react";
-import { restaurantList } from "../../constants";
+import useOnline from "../utils/useOnline";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-function filterData(searchText, restaurants) {
-  const filterData = restaurants.filter((restaurant) =>
-    restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
-  );
-
-  return filterData;
-}
-
+import { filterData } from "../utils/helper";
+import { RESTAURANT_API, NO_NETWORK_DOGS_API } from "../../constants";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import { LinkContainer } from "react-router-bootstrap";
+import Carousels from "./Carousels";
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [carousels, setCarousels] = useState("");
 
   useEffect(() => {
     getRestaurants();
   }, []);
 
   async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(RESTAURANT_API);
     const json = await data.json();
 
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setCarousels(json?.data?.cards[0]?.data?.data?.cards);
+  }
+
+  const isOnline = useOnline();
+
+  if (!isOnline) {
+    return (
+      <div>
+        <h1 id="network-msg">
+          🐙You are offline! Please check your internet connection!!❎
+        </h1>
+        <img id="dog-image" src={NO_NETWORK_DOGS_API} />
+      </div>
+    );
   }
 
   // not render component (Early return)
@@ -38,48 +49,52 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="section">
-        <img
-          className="sectionImage"
-          src="https://thebelgianwaffle.co/wp-content/uploads/2019/12/6.jpg"
-        ></img>
-        <div className="search-section">
-          <input
-            type="search"
-            placeholder="EXPLORE OUR OFFERINGS"
+      <div className="carousels-list d-flex justify-content-center">
+        {carousels.length === 0
+          ? "No data found"
+          : carousels.map((carousel) => {
+              return (
+                <Carousels {...carousel.data} key={carousel.data.bannerId} />
+              );
+            })}
+      </div>
+      <div className="container">
+        <InputGroup className="mb-1">
+          <Form.Control
+            placeholder="Search Restaurants..."
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
             value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
-          ></input>
-          <button
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <Button
+            variant="outline-secondary"
+            id="button-addon2"
             onClick={() => {
-              //need to filter the data
               const data = filterData(searchText, allRestaurants);
-              // update the state - restaurants
               setFilteredRestaurants(data);
             }}
           >
-            Indulge
-          </button>
-        </div>
-      </div>
-      <div className="main">
-        <div className="main-head">
-          <h1 id="slogan">Your Personal Chocolate Room🍫🥳</h1>
-          <h2 id="slogan">The easiest way to get escaped</h2>
-        </div>
-        <div className="main-content">
-          {filteredRestaurants.map((restaurant) => {
-            return (
-              <Link
-                to={"/restaurant/" + restaurant.data.id}
-                key={restaurant.data.id}
-              >
-                <RestaurantCard {...restaurant.data} />
-              </Link>
-            );
-          })}
+            {" "}
+            Search
+          </Button>
+        </InputGroup>
+        <div className="restaurant-list">
+          {filteredRestaurants.length === 0
+            ? "No data found"
+            : filteredRestaurants.map((restaurant) => {
+                return (
+                  <LinkContainer
+                    to={"/restaurant/" + restaurant.data.id}
+                    key={restaurant.data.id}
+                    className="normal-text"
+                  >
+                    <Link>
+                      <RestaurantCard {...restaurant.data} />
+                    </Link>
+                  </LinkContainer>
+                );
+              })}
         </div>
       </div>
     </>

@@ -1,5 +1,11 @@
+import Card from "react-bootstrap/Card";
+
 const Footer = () => {
-    return <h4>Footer</h4>
-}
+  return (
+    <Card className="text-center">
+      <Card.Footer className="text-muted">@2023 FoodWale</Card.Footer>
+    </Card>
+  );
+};
 
 export default Footer;

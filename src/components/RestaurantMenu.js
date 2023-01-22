@@ -1,42 +1,76 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../../constants";
+import useRestaurant from "../utils/useRestaurant";
 import Shimmer from "./Shimmer";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 const RestaurantMenu = () => {
   const { id } = useParams();
-const [restaurant, setRestaurant] = useState(null)
-  useEffect(() => {
-    getRestaurantInfo();
-  }, []);
+  // const [restaurant, setRestaurant] = useState(null);
 
-  async function getRestaurantInfo() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/v4/full?lat=12.9351929&lng=77.624480699999999&menuId="+id
-    );
-    const json = await data.json();
-    setRestaurant(json.data);
-  }
- 
-  return (!restaurant) ? <Shimmer/> : (
-    <div className="menu">
-    <div>
-      <h1>Restraunt id: {id}</h1>
-      <h2>{restaurant?.name}</h2>
-      <img src={IMG_CDN_URL + restaurant?.cloudinaryImageId} />
-      <h3>{restaurant?.area}</h3>
-      <h3>{restaurant?.city}</h3>
-      <h3>{restaurant?.avgRating} stars</h3>
-      <h3>{restaurant?.costForTwoMsg}</h3>
-    </div>
-    <div>
-      <h1>Menu</h1>
-      <ul className="menus">
-        {Object.values(restaurant?.menu?.items).map((item) => (
-          <li key={item.id}>🍲{item.name}</li>
-        ))}
-      </ul>
-    </div>
-  </div>
+  const restaurant = useRestaurant(id);
+
+  return !restaurant ? (
+    <Shimmer />
+  ) : (
+    <>
+      <Card style={{ width: "19rem" }} className="restroBanner">
+        <Row>
+          <Col style={{ margin: "auto", textAlign: "right" }}>
+            <Card.Img
+              className="restroImage"
+              variant="top"
+              src={IMG_CDN_URL + restaurant?.cloudinaryImageId}
+            />
+          </Col>
+          <Col>
+            <Card.Body>
+              <Card.Title>{restaurant?.name}</Card.Title>
+              <Card.Text style={{ color: "#a19a9a" }}>
+                {restaurant?.cuisines?.join(",")}
+              </Card.Text>
+              <Card.Text style={{ color: "#a19a9a" }}>
+                {restaurant?.area}
+              </Card.Text>
+            </Card.Body>
+          </Col>
+        </Row>
+      </Card>
+
+      <div className="restaurant-list">
+        <div className="restro">
+          {Object.values(restaurant?.menu?.items).map((item) => {
+            return (
+              <Card style={{ width: "19rem" }} key={item.id} className="restro">
+                <Row>
+                  <Col>
+                    <Card.Body>
+                      <Card.Title className="restaurant-name">
+                        {item.name}
+                      </Card.Title>
+                      <Card.Text className="notmal-text small-text">
+                        {item.price / 100} Rs
+                      </Card.Text>
+                      <Card.Text className="notmal-text small-text">
+                        {item.description}
+                      </Card.Text>
+                    </Card.Body>
+                  </Col>
+                  <Col style={{ margin: "auto" }}>
+                    <Card.Img
+                      variant="top"
+                      src={IMG_CDN_URL + item.cloudinaryImageId}
+                    />
+                  </Col>
+                </Row>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 };
 export default RestaurantMenu;

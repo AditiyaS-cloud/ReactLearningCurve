@@ -1,274 +1,142 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html,
-  body {
-    height: 100%;
-    width: 100%;
-    font-family: gilroy;
-  }
-  
-  .title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .title h2 {
-    font-family: Dancing script;
-    font-size: 30px;
-    font-weight: 700;
-    margin-left: -10px;
-    margin-bottom: -10px;
-  }
-  
-  .logo {
-    width: 100px;
-    margin-left: -40px;
-    margin-top: 13px;
-  }
-  
-  ul {
-    display: flex;
-    list-style-type: none;
-    justify-content: space-between;
-    width: 50%;
-  }
-  
-  a {
-    font-size: 14px;
-    font-weight: 600;
-    color: black;
-    text-decoration: none;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  
-  li:hover {
-    transform: scale(1.1);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.274);
-  }
-  
-  ul > i {
-    font-size: 22px;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 50px;
-    background-color: rgba(0, 0, 0, 0.192);
-  }
-  
-  ul > i:hover {
-    color: #ee5324f5;
-    background-color: rgba(0, 0, 0, 0.24);
-  }
-  
-  .section {
-    height: 50VH;
-    width: 100%;
-    background-color: #fecebc;
-    position: relative;
-  }
-  
-  .section .sectionImage {
-    height: 100%;
-    width: 100%;
-    object-position: center;
-    object-fit: cover;
-    /* filter: blur(3); */
-  }
-  
-  .search-section {
-    position: absolute;
-    left: 50%;
-    top: 54%;
-    transform: translate(-50%);
-  }
-  
-  .search-section input {
-    width: 400px;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 10px 10px 10px 0;
-    margin-right: 10px;
-  }
-  
-  .search-section input::placeholder {
-    color: rgb(119, 104, 104);
-    font-weight: 12px;
-  }
-  
-  .search-section input:focus {
-    outline: none;
-    box-shadow: 4px 4px 5px rgba(226, 56, 13, 0.363);
-  }
-  
-  .search-section button {
-    color: white;
-    vertical-align: middle;
-    padding: 13px 20px;
-    border-radius: 10px;
-    border: none;
-    font-size: 15px;
-    font-weight: 600;
-    background-color: #ee5324f5;
-    cursor: pointer;
-    transition: all ease 0.1s;
-  }
-  
-  .search-section button:hover {
-    color: #472919;
-    background-color: #f1cdaf;
-    border: 2px solid #f1cdaf;
-  }
-  
-  .search-section button span {
-    margin-left: 20px;
-    margin-top: -8px;
-  }
-  
-  .header {
-    height: 10vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 30px;
-  }
-  
-  .main-head {
-    text-align: center;
-  }
-  
-  .main-head h1 {
-    font-family: Dancing script;
-    font-weight: 700;
-    color: #472919;
-  }
-  
-  .main-head h2 {
-    margin: 10px 0 40px 0;
-    font-size: 16px;
-    color: #472919;
-  }
-  
-  .main-content {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0px 9vw;
-    display: flex;
-  }
-  
-  .main {
-    width: 100%;
-    background-image: linear-gradient(to right, #f1cdaf , white, #472919);
-    position: absolute;
-    padding: 15px;
-  }
-  
-  .card {
-    height: 280px;
-    width: 270px;
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.308);
-    margin: 14px;
-    position: relative;
-    background-color: #f5f5f3e3;
-    overflow: hidden;
-  }
-  
-  .card img {
-    height: 130px;
-    width: 270px;
-    border-radius: 5px 5px 0 0;
-    cursor: pointer;
-  }
-  
-  .card:hover {
-    top: 0;
-    opacity: 1;
-  }
-  
-  .card-in {
-    padding: 6px;
-  }
-  
-  .card-in h2 {
-    width: 300px;
-    font-size: 20px;
-  }
-  
-  .card-in h4 {
-    color: rgb(88, 84, 84);
-    font-size: 15px;
-    margin: 4px 0;
-  }
-  
-  .card-in .goodRating {
-    border: none;
-    padding: 4px 8px;
-    background-color: rgb(24, 153, 24);
-    border-radius: 8px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  
-  .card-in .badRating {
-    border: none;
-    padding: 4px 8px;
-    background-color: #dd2424;
-    border-radius: 8px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  
-  .card-price-order {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .card-price-order h5 {
-    position: absolute;
-    bottom: 5%;
-  }
-  
-  .card-price-order > button {
-    border: 2px solid rgba(0, 0, 0, 0.493);
-    border-radius: 10px;
-    padding: 5px 10px;
-    background-color: rgba(0, 0, 0, 0.205);
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all ease 0.1s;
-    position: absolute;
-    bottom: 3%;
-    right: 5%;
-  }
-  
-  .card-price-order > button:hover {
-    border: 2px dotted rgb(0, 0, 0);
-    background-color: #f1cdaf;
-  }
+#network-msg {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 90px;
+  color: GRAY;
+  font-size: 90px;
+}
 
-  
+#dog-image {
+  margin-top: 86px;
+  margin-left: 33%;
+  height: 500px;
+}
+
+.logo {
+  width: 100px;
+  margin-left: 10px;
+  height: 80px;
+}
+
+.card {
+  width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.card > img {
+  width: 100%;
+}
+
+img.card-img-top {
+  border-radius: 20px;
+}
+
+.restaurant-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.input-group {
+  width: 30% !important;
+  margin: 10px;
+}
+
+.form-control {
+  width: 30% !important;
+}
+
+.normal-text {
+  color: black;
+  text-decoration: none;
+}
+.restro {
+  margin-right: auto;
+  margin-left: auto;
+  width: 40rem !important;
+  padding: 10px;
+}
+
+.restro.card {
+  border-radius: 20px;
+}
+
+.card {
+  border-radius: 20px !important;
+}
+
+.restroBanner.card {
+  width: 100% !important;
+  height: 245px !important;
+  margin: 0px;
+  background-color: black;
+  color: white;
+  border-radius: 0px !important;
+}
+
+.restroImage {
+  width: auto !important;
+}
+
+.restroImage {
+  height: 220px !important;
+}
+.carousels-list {
+  /* background: black !important; */
+  display: flex;
+  overflow: scroll;
+  /* margin:50px !important; */
+}
+.wrapper {
+  transition: all 0.5s !important;
+}
+.wrapper:hover {
+  transform: scale(1.1) !important	;
+}
+
+.small-text {
+  font-size: 13px;
+  color: #a19a9a;
+}
+
+.star {
+  position: relative;
+
+  display: inline-block;
+  width: 0;
+  height: 0;
+
+  margin-left: 0.9em;
+  margin-right: 0.9em;
+  margin-bottom: 1.2em;
+
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.7em solid white;
+  border-left: 0.3em solid transparent;
+
+  /* Controlls the size of the stars. */
+  font-size: 6px;
+}
+.star-bg-positive {
+  background: green;
+  color: white;
+  font-size: 12px;
+}
+
+.star-bg-negative {
+  background: #db7c38;
+  color: white;
+  font-size: 12px;
+}
+
+.restaurant-name {
+  font-size: 17px !important;
+}
+
 .shimmer-card {
   width: 200px;
   height: 200px;
   background: lightgrey;
-  margin: 20px;
-}
-
-.menu {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.menus{
-  width:100%;
-display:flex;
-flex-direction:column;
-
+  margin: 35px;
 }

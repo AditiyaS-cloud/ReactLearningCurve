@@ -1,11 +1,14 @@
+import Card from "react-bootstrap/Card";
 const Shimmer = () => {
   return (
     <div className="restaurant-list">
-      {Array(10)
+      {Array(20)
         .fill("")
-        .map((e,index) => {
-          <div className="shimmer-card" key={index}></div>;
-        })}
+        .map((e, index) => (
+          <Card key={index} style={{ width: "19rem" }}>
+            <Card.Body className="shimmer-card"></Card.Body>
+          </Card>
+        ))}
     </div>
   );
 };
