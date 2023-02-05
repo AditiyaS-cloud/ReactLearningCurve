@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
+import { useSelector } from "react-redux";
 
 const Title = () => {
   return (
@@ -16,8 +17,10 @@ const Title = () => {
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const cartItems = useSelector((store) => store.cart.items);
+  // console.log(cartItems);
   return (
-    <Navbar expand="md">
+    <Navbar bg="light" expand="md">
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>
@@ -37,7 +40,7 @@ const Header = () => {
               <Nav.Link>Contact</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/cart">
-              <Nav.Link>Cart</Nav.Link>
+              <Nav.Link>Cart - {cartItems.length}</Nav.Link>
             </LinkContainer>
             {isLoggedIn ? (
               <Nav.Link onClick={() => setIsLoggedIn(false)}>Logout</Nav.Link>

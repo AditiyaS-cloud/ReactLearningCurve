@@ -5,12 +5,21 @@ import Shimmer from "./Shimmer";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
   // const [restaurant, setRestaurant] = useState(null);
 
   const restaurant = useRestaurant(id);
+
+  const dispatch = useDispatch();
+
+  const addFoodItem = (item) => {
+    dispatch(addItem(item));
+  };
 
   return !restaurant ? (
     <Shimmer />
@@ -38,6 +47,10 @@ const RestaurantMenu = () => {
           </Col>
         </Row>
       </Card>
+      {/* <button
+        className="p-2 m-5 bg-green-200"
+        onClick={() => handleAddItem()}
+      ></button> */}
 
       <div className="restaurant-list">
         <div className="restro">
@@ -50,12 +63,18 @@ const RestaurantMenu = () => {
                       <Card.Title className="restaurant-name">
                         {item.name}
                       </Card.Title>
-                      <Card.Text className="notmal-text small-text">
+                      <Card.Text className="normal-text small-text">
                         {item.price / 100} Rs
                       </Card.Text>
-                      <Card.Text className="notmal-text small-text">
+                      <Card.Text className="normal-text small-text">
                         {item.description}
                       </Card.Text>
+                      <Button
+                        variant="outline-success"
+                        onClick={() => addFoodItem(item)}
+                      >
+                        Add Item
+                      </Button>{" "}
                     </Card.Body>
                   </Col>
                   <Col style={{ margin: "auto" }}>

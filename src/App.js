@@ -11,6 +11,8 @@ import Profile from "./components/Profile";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Shimmer";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 // import Instamart from "./components/Instamart";
 
 // onDemand loading
@@ -21,11 +23,11 @@ const Instamart = lazy(() => import("./components/Instamart"));
 //upon on demand loading --> upon render --> it will suspend the loading
 const AppLayout = () => {
   return (
-    <>
+    <Provider store={store}>
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </Provider>
   );
 };
 
