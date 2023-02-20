@@ -2,9 +2,9 @@
 
 ❤️ Welcome to journey of learning React 🙏
 
-I will be documenting my learning react journey in this series. This is a Namaste React Course from Zero to Hero by Akshay Saini(Founder of NamasteDev). This repository consists of Assignment, Code & Class Notes. I will be updating here some amazing stuff.
+I will be documenting my learning react journey in this series.
 
-So, Hii beautiful peeps out there! I'm Aditiya and working as a Front End developer in Boston Consulting Group since 2 years. I'm revising all the skills required for pro frontend developer, so taken this opportunity of learning react from Namaste React. The core concepts, deep knowledge of like why react is fast, how behind the scenes your app is performing, how browser responds to those changes are provided here. So let's learn together and grow together.
+I'm Aditiya and working as a Front End developer in Boston Consulting Group since 2 years. I'm revising all the skills required for pro frontend developer, so taken this opportunity of learning react by creating Swiggy clone and implementing all major concepts of react. The core concepts, deep knowledge of like why react is fast, how behind the scenes your app is performing, how browser responds to those changes are provided here.
 
 Some important points to be remembered while cloning this respository. Ater successful cloning, please follow below instructions:
 
