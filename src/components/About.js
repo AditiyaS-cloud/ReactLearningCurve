@@ -33,6 +33,7 @@ class AboutUs extends Component {
 
   render() {
     console.log("Parent - render");
+    return <h1>Offer</h1>;
     return (
       <div>
         <h1>About Us Page</h1>

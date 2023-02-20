@@ -1,25 +1,23 @@
 import { useParams } from "react-router-dom";
-import { IMG_CDN_URL } from "../../constants";
+import { IMG_CDN_URL, NO_CART_IMAGE_URL } from "../../constants";
 import useRestaurant from "../utils/useRestaurant";
 import Shimmer from "./Shimmer";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import { addItem } from "../utils/cartSlice";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { MdOutlineLocalOffer } from "react-icons/md";
+import fallbackImg from "../assets/images/errorImage.jpg";
+import Widget from "./Widget";
+import MenuItems from "./MenuItems";
+import EmptyCart from "./EmptyCart";
+import MenuCart from "./MenuCart";
+import { useState } from "react";
 const RestaurantMenu = () => {
   const { id } = useParams();
-  // const [restaurant, setRestaurant] = useState(null);
-
   const restaurant = useRestaurant(id);
-
-  const dispatch = useDispatch();
-
-  const addFoodItem = (item) => {
-    dispatch(addItem(item));
-  };
+  const cartItems = useSelector((store) => store.cart.items);
 
   return !restaurant ? (
     <Shimmer />
@@ -32,62 +30,98 @@ const RestaurantMenu = () => {
               className="restroImage"
               variant="top"
               src={IMG_CDN_URL + restaurant?.cloudinaryImageId}
+              onError={(e) => {
+                e.target.src = fallbackImg;
+              }}
             />
           </Col>
-          <Col>
+          <Col style={{ margin: "auto" }}>
             <Card.Body>
               <Card.Title>{restaurant?.name}</Card.Title>
-              <Card.Text style={{ color: "#a19a9a" }}>
-                {restaurant?.cuisines?.join(",")}
+              <Card.Text className="small-text" style={{ color: "#a19a9a" }}>
+                {restaurant?.cuisines?.join(", ")}
               </Card.Text>
-              <Card.Text style={{ color: "#a19a9a" }}>
-                {restaurant?.area}
+              <Card.Text className="small-text" style={{ color: "#a19a9a" }}>
+                {restaurant?.locality + ", " + restaurant?.area}
               </Card.Text>
+              <Row>
+                <Col style={{ borderRight: "1px solid white" }}>
+                  <Card.Subtitle>{restaurant?.avgRating}</Card.Subtitle>
+                  <Card.Text className="small-text">
+                    {restaurant?.totalRatingsString}
+                  </Card.Text>
+                </Col>
+                <Col style={{ borderRight: "1px solid white" }}>
+                  <Card.Subtitle>{restaurant?.sla?.slaString}</Card.Subtitle>
+                  <Card.Text className="small-text">Delivery Time</Card.Text>
+                </Col>
+                <Col>
+                  <Card.Subtitle>
+                    &#8377;{restaurant?.costForTwo / 100}
+                  </Card.Subtitle>
+                  <Card.Text className="small-text">Cost for two</Card.Text>
+                </Col>
+              </Row>
             </Card.Body>
+          </Col>
+          <Col style={{ margin: "auto" }}>
+            <div style={{ border: "1px solid white", width: "263px" }}>
+              {restaurant.aggregatedDiscountInfo.descriptionList.map(
+                (item, index) => {
+                  return (
+                    <p key={index} style={{ margin: "20px" }}>
+                      <MdOutlineLocalOffer /> {item.meta}
+                    </p>
+                  );
+                }
+              )}
+            </div>
           </Col>
         </Row>
       </Card>
-      {/* <button
-        className="p-2 m-5 bg-green-200"
-        onClick={() => handleAddItem()}
-      ></button> */}
 
-      <div className="restaurant-list">
-        <div className="restro">
-          {Object.values(restaurant?.menu?.items).map((item) => {
-            return (
-              <Card style={{ width: "19rem" }} key={item.id} className="restro">
-                <Row>
-                  <Col>
-                    <Card.Body>
-                      <Card.Title className="restaurant-name">
-                        {item.name}
-                      </Card.Title>
-                      <Card.Text className="normal-text small-text">
-                        {item.price / 100} Rs
-                      </Card.Text>
-                      <Card.Text className="normal-text small-text">
-                        {item.description}
-                      </Card.Text>
-                      <Button
-                        variant="outline-success"
-                        onClick={() => addFoodItem(item)}
-                      >
-                        Add Item
-                      </Button>{" "}
-                    </Card.Body>
-                  </Col>
-                  <Col style={{ margin: "auto" }}>
-                    <Card.Img
-                      variant="top"
-                      src={IMG_CDN_URL + item.cloudinaryImageId}
+      <div style={{ margin: "10px", padding: "10px" }}>
+        <Row>
+          <Col
+            style={{
+              textAlign: "right",
+              listStyleType: "none",
+              margin: "10px",
+              padding: "10px",
+            }}
+          >
+            {restaurant?.menu?.widgets?.map((e, index) => {
+              return <Widget name={e.name} index={index} key={index} />;
+            })}
+          </Col>
+          <Col style={{ padding: "10px" }}>
+            <div className="restaurant-list">
+              <div className="restro">
+                {Object.values(restaurant?.menu?.items).map((item) => {
+                  return (
+                    <MenuItems
+                      restaurantMenuDetails={restaurant}
+                      cartItems={cartItems}
+                      item={item}
+                      id={item.id}
+                      name={item.name}
+                      price={item.price}
+                      description={item.description}
+                      cloudinaryImageId={item.cloudinaryImageId}
                     />
-                  </Col>
-                </Row>
-              </Card>
-            );
-          })}
-        </div>
+                  );
+                })}
+              </div>
+            </div>
+          </Col>
+          <Col style={{ margin: "10px", padding: "10px", opacity: 1 }}>
+            {!cartItems.length ? (
+              <EmptyCart NO_CART_IMAGE_URL={NO_CART_IMAGE_URL} />
+            ) : (
+              <MenuCart cartItems={cartItems} />
+            )}
+          </Col>
+        </Row>
       </div>
     </>
   );

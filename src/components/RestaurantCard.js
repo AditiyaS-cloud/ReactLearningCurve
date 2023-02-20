@@ -2,7 +2,7 @@ import { IMG_CDN_URL } from "../../constants";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
+import fallbackImg from "../assets/images/errorImage.jpg";
 const RestaurantCard = ({
   name,
   cuisines,
@@ -14,7 +14,13 @@ const RestaurantCard = ({
   return (
     <>
       <Card style={{ width: "19rem" }} className="wrapper">
-        <Card.Img variant="top" src={IMG_CDN_URL + cloudinaryImageId} />
+        <Card.Img
+          variant="top"
+          src={IMG_CDN_URL + cloudinaryImageId}
+          onError={(e) => {
+            e.target.src = fallbackImg;
+          }}
+        />
         <Card.Body>
           <Card.Title className="restaurant-name">{name}</Card.Title>
           <Card.Text className="notmal-text small-text">

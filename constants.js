@@ -2,16 +2,19 @@ export const IMG_CDN_URL =
   "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 
 export const RESTAURANT_API =
-  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.9940437&lng=72.5277471&page_type=DESKTOP_WEB_LISTING";
+  "https://corsanywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.9940437&lng=72.5277471&page_type=DESKTOP_WEB_LISTING";
 
 export const FETCH_RESTAURANT_MENU =
-  "https://www.swiggy.com/dapi/menu/v4/full?lat=12.9351929&lng=77.624480699999999&menuId=";
+  "https://corsanywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/v4/full?lat=12.9351929&lng=77.624480699999999&menuId=";
 
 export const RESTAURANT_CAROUSELS_API =
   "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_520,h_520/";
 
 export const NO_NETWORK_DOGS_API =
   "https://images.dog.ceo/breeds/pug/n02110958_13993.jpg";
+
+export const NO_CART_IMAGE_URL =
+  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2";
 
 //Config Driven UI - Mock Data from API
 export const restaurantList = [

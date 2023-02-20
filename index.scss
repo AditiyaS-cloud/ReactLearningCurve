@@ -46,9 +46,9 @@
 	margin: 10px;
   }
   
-  .form-control {
-	width: 30% !important;
-  }
+//   .form-control {
+// 	width: 30% !important;
+//   }
   
   .shimmer-card {
 	width: 200px;
@@ -114,6 +114,7 @@
   
   .wrapper {
 	transition: all 0.5s !important;
+	min-height: 22rem;
   }
   .wrapper:hover {
 	transform: scale(1.1) !important	;
@@ -121,7 +122,7 @@
   
   .carousels-list {
 	/* background: black !important; */
-	overflow: scroll;
+	// overflow: scroll;
 	/* margin:50px !important; */
   }
   
@@ -196,4 +197,67 @@
 	background: #fc8019 !important;
 	border: #fc8019 !important
  }
+
+ 
+ a.header-name.nav-link {
+    margin-right: 50px;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+a.header-name.nav-link:hover {
+	color: #fc8019;
+}
+
+svg.header-icon {
+	margin-right: 10px;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+li.li-style:hover {
+	color: #fc8019;
+	cursor: pointer;
+}
+
+.search-text.input-group{
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 1.25rem !important;
+}
+
+input.search-input.form-control{
+	border-color: #fc8019 !important;
+}
+
+.item-add-remove-menu {
+	float: right;
+	position: absolute;
+	bottom: 0px;
+	right: 17%;
+	box-shadow: 0 2px 14px #888484;
+}
+
+.item-add-remove-cart {
+	box-shadow: 0 2px 14px #888484;
+	width: 112px;
+}
+
+button.checkout-btn.btn.btn-primary {
+	background: #fc8019;
+	border-color: #fc8019;
+	border-radius: 0px;
+	width: 80%;
+}
+
+a.checkout-btn.btn.btn-primary {
+	background: #fc8019;
+	border-color: #fc8019;
+	border-radius: 0px;
+	width: 80%;
+}
+
+button.add-remove-btn-font-color.btn.btn-primary {
+	color: #fc8019 !important;
+}
   
