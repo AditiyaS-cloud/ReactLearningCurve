@@ -14,12 +14,16 @@ If you want to use direct command "npx parcel "to run app, then remove "start" a
 
 ## HOME PAGE/RESTAURANTS LIST PAGE
 
-![HOME](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/HOME_PAGE.jpg?raw=true)
+![HOME](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/homepage.png?raw=true)
 
 ## RESTAURANT MENUS PAGE
 
-![MENU](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/RESTAURANT_MENU.jpg?raw=true)
+![MENU](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/restaurant_details.png?raw=true)
 
 ## SHIMMER EFFECT PAGE
 
-![SHIMMER](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/SHIMMER_EFFECT.jpg?raw=true)
+![SHIMMER](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/shimmer.png?raw=true)
+
+## CART PAGE
+
+![CART](https://github.com/AditiyaS-cloud/ReactLearningCurve/blob/main/src/assets/screenshots/cart_page.png?raw=true)
