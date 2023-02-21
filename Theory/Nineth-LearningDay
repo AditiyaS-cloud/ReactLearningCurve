@@ -1,0 +1,43 @@
+1. When and why do we need lazy()?
+   lazy() is a utility function in React that allows for lazy-loading of components. It works by deferring the loading of a component until it is actually needed (i.e., when it is displayed on the screen). This can improve the initial loading performance of an application by only loading components that are actually required.
+
+In React, components are usually loaded and parsed immediately when the application starts, even if they may not be needed right away. lazy() allows you to load a component only when it is needed, potentially improving the performance of your application.
+
+2.What is suspense?
+Suspense is a component in React that allows for declarative loading and handling of asynchronous data and code. It works in conjunction with lazy() and provides a way to show loading content (e.g. a spinner) while a component that is being loaded asynchronously is being fetched and parsed.
+
+By wrapping a component that is being loaded asynchronously with Suspense, you can specify what should be displayed while the component is being fetched and parsed. This way, instead of having to handle loading and error states manually in your code, you can declaratively specify what should be shown to the user while asynchronous data is being loaded.
+
+In short, Suspense provides a way to handle the loading state of asynchronous content in a declarative way, improving the developer experience and reducing the amount of code that needs to be written to handle loading states.
+
+3. WHy we got this error: A component suspended while responding to synchronous input. This will cause UI to be relaced with a loading indicator. To fix, updates that suspended should be wrapped with startTransition? How does suspense fix this error?
+
+This error message is related to the use of Suspense in React. It means that a component is trying to use Suspense to handle the loading state of asynchronous content, but it is doing so in response to a synchronous user interaction (e.g., clicking a button).
+
+In React, Suspense is designed to be used for asynchronous data loading, not for synchronous interactions. If a component that uses Suspense is triggered by a synchronous interaction (e.g., a button click), it can cause the entire UI to be replaced with a loading indicator, as the error message suggests.
+
+To fix this issue, the updates that trigger the Suspense component should be wrapped with startTransition. startTransition is a utility function that allows you to schedule updates that use Suspense to be executed asynchronously, ensuring that the updates do not interfere with the normal flow of the application.
+
+For example, you can wrap the updates in a setTimeout or use an animation library to perform the updates asynchronously. This way, the updates will be executed after the current interaction has completed, avoiding the issue of synchronous updates triggering Suspense.
+
+4. Advantages and disadvantages of using code splitting techniques patterns?
+   Code splitting is a technique in React that allows you to split your application's code into smaller, more manageable chunks. This can help improve the performance of your application by loading only the code that is needed for a specific part of the application, rather than loading all of the code at once.
+
+There are a few different ways to implement code splitting in React, but one of the most popular methods is using the dynamic import() statement. This statement allows you to load a module or component only when it is needed, rather than loading it at the initial render of your application.
+
+Here's an example of how you might use dynamic imports to split your code:
+
+function MyComponent() {
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+
+return (
+<React.Suspense fallback={<div>Loading...</div>}>
+<OtherComponent />
+</React.Suspense>
+);
+}
+In this example, OtherComponent will only be loaded when MyComponent is rendered. If MyComponent is not currently being rendered, or if it is not in the visible part of the screen, OtherComponent will not be loaded.
+
+Another way to split the code is by using a library such as react-loadable, webpack, and others. They are different ways to add code splitting to your application, but the main idea is to split your application into smaller chunks that can be loaded on demand, this improves the user experience and the performance of your application.
+
+In summary, Code splitting is a technique in React that allows you to split your application's code into smaller, more manageable chunks. The idea is to split your application into smaller chunks that can be loaded on demand, this improves the user experience and the performance of your application, one of the most popular methods to implement code splitting is using the dynamic import() statement. This statement allows you to load a module or component only when it is needed, rather than loading it at the initial render of your application. Other libraries such as react-loadable, webpack, and others can be used to achieve the same goal.

@@ -1,0 +1,99 @@
+The order of the lifecycle methods in React can be grouped into three main categories:
+
+Mounting
+These methods are called when a component is added to the DOM. The order of the methods in this category is as follows:
+
+constructor(): This method is called before the component is mounted. It is used to initialize the state and bind event handlers.
+render(): This method is called to render the JSX for the component.
+componentDidMount(): This method is called after the component has been added to the DOM and can be used to perform any additional setup, such as fetching data or setting up event listeners.
+Updating
+These methods are called when a component's props or state change, causing the component to re-render. The order of the methods in this category is as follows:
+
+componentDidUpdate(): This method is called after the component has re-rendered and can be used to perform any additional setup or cleanup.
+Unmounting
+These methods are called when a component is removed from the DOM. The order of the methods in this category is as follows:
+
+componentWillUnmount(): This method is called right before the component is removed from the DOM and can be used to perform any cleanup, such as removing event listeners.
+It's important to note that not all of the methods are necessary to use in every component, and some of them have been deprecated in recent versions of React.
+
+It's also worth noting that the lifecycle methods are not called in the same order for every component. It depends on the state of the component, whether it is mounting, updating, or unmounting.
+
+In summary, the lifecycle methods in React can be grouped into three main categories: Mounting, Updating, and Unmounting. The order of the methods in each category is as follows:
+
+Mounting: constructor() -> render() -> componentDidMount()
+Updating: render() -> componentDidUpdate()
+Unmounting: componentWillUnmount()
+It's important to note that not all of the methods are necessary to use in every component.
+
+componentDidMount()
+componentDidMount() is a lifecycle method in React that is called after a component has been added to the DOM. It is typically used to perform any additional setup or initialization that the component needs after it has been rendered.
+
+Some common use cases for componentDidMount() include:
+
+Fetching data from an API: After a component is rendered, it can use componentDidMount() to make a request to an API to fetch data that it needs to display.
+Setting up event listeners: If a component needs to listen for events, it can use componentDidMount() to set up those listeners.
+Initializing third-party libraries: If a component needs to use a third-party library, it can use componentDidMount() to initialize that library.
+Creating timers or intervals: If a component needs to run a function at regular intervals or after a certain amount of time, it can use componentDidMount() to set up those timers or intervals.
+componentDidUpdate()
+componentDidUpdate() is a lifecycle method in React that is called after a component's props or state have been updated and the component has been re-rendered. It is typically used to perform any additional updates or calculations that the component needs after it has been updated.
+
+Some common use cases for componentDidUpdate() include:
+
+Making network requests based on prop changes: If a component needs to make a network request based on a prop change, it can use componentDidUpdate() to check if the prop has changed and make the request if necessary.
+Updating the DOM based on prop or state changes: If a component needs to update the DOM based on prop or state changes, it can use componentDidUpdate() to make those updates.
+Setting or clearing timers or intervals: If a component needs to set or clear timers or intervals based on prop or state changes, it can use componentDidUpdate() to do so.
+Checking for and handling prop or state changes: componentDidUpdate() can be used to check for and handle prop or state changes that occur during a component's lifecycle.
+It's important to note that componentDidUpdate() is called every time the component updates, so it's the best place to put methods that need to be called on every update, it also receives prevProps and prevState as arguments, so you can compare the current and previous state/props.
+
+componentWillUnmount()
+componentWillUnmount() is a lifecycle method in React that is called just before a component is removed from the DOM. It is typically used to perform any cleanup or teardown that the component needs before it is removed.
+
+Some common use cases for componentWillUnmount() include:
+
+Removing event listeners: If a component has set up event listeners in componentDidMount(), it can use componentWillUnmount() to remove those listeners before the component is removed from the DOM.
+Clearing timers or intervals: If a component has set up timers or intervals in componentDidMount(), it can use componentWillUnmount() to clear those timers or intervals before the component is removed from the DOM.
+Canceling network requests: If a component has made network requests in componentDidMount(), it can use componentWillUnmount() to cancel those requests before the component is removed from the DOM.
+It's important to note that componentWillUnmount() is called only once during the component's lifecycle, when it is removed from the DOM, so it's not the best place to put methods that need to be called on every update or when component is hidden.
+
+In React, the super(props) statement is used in the constructor of a class-based component to call the constructor of the component's parent class (which is React.Component) and to pass the props argument to the parent's constructor.
+
+The props argument is an object that contains the properties that are passed to the component when it is rendered. By passing the props argument to the parent class's constructor, the component is able to access the properties passed to it, and use them to render its content.
+
+Here's an example of a simple component that uses the super(props) statement in its constructor:
+
+class MyComponent extends React.Component {
+constructor(props) {
+super(props);
+}
+
+render() {
+return <h1>Hello, {this.props.name}</h1>;
+}
+}
+Here, the component is defined as a class called MyComponent that extends React.Component. Inside the constructor, super(props) is called to pass the props argument to the parent class's constructor.
+
+Then, in the component's render() method, the component uses the this.props.name property to render a greeting message. This component can be used like this:
+
+<MyComponent name="John" />
+This will output "Hello, John" on the page.
+
+Interestingly if you forget to call super(props) in the constructor, it will throw an error because this.props will not be defined in the component class.
+
+So basically, by calling super(props) in the constructor, we are allowing the component to access the props passed to it by its parent component, and also access this.props variable inside the component class.
+
+The callback function of useEffect cannot be declared as async because the useEffect hook expects a synchronous function as its callback.
+
+An async function, by definition, is a function that returns a promise and can be paused at any point using the await keyword to wait for the promise to resolve. However, when an async function is passed as the callback to useEffect, it will return a promise and the useEffect hook will not know when that promise is resolved or rejected.
+
+This can lead to unexpected behavior and might cause issues when trying to synchronize the state with the DOM.
+
+Instead of using an async function, you can use async/await inside of a normal function.
+
+useEffect(() => {
+const fetchData = async () => {
+const response = await axios.get('/data');
+setData(response.data);
+}
+fetchData();
+}, []);
+In this example, the callback function is not an async function, but inside it, it calls a function fetchData() which is async and it uses the await keyword to wait for the response from the server.

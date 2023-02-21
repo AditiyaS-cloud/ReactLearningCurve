@@ -1,0 +1,71 @@
+1. What is prop drilling?
+   Prop drilling is a technique in React where data is passed from a parent component to a child component through props, even though the child component is not directly using the data. The data is instead passed down to another child component, and so on, until it reaches the component that will actually use the data.
+
+This can lead to complex and deeply nested component trees, making it difficult to manage the flow of data and update the components that depend on it. It also makes it harder to understand the component structure and makes it harder to reuse components, as they often have to receive props from multiple levels up the component tree.
+
+Prop drilling is generally considered an anti-pattern in React, as it makes the component tree more complex and harder to maintain. A better approach is to use a state management tool like Redux or React's context API to store and manage shared state, so that it can be passed down to components through context instead of props.
+
+2. What is lifting state up?
+   Lifting the state up is a technique in React where you move the shared state from child components to a common ancestor component, so that it can be passed down to its children as props.
+
+This allows multiple child components to access and update the same state, which can improve the organization and reusability of your components. By lifting the state up, you can manage the shared state in a centralized location, reducing the complexity and redundancy in your component tree.
+
+Lifting the state up can be useful when multiple child components need to access or update the same state, such as the selected item in a list, the text in an input field, or the status of a toggle switch.
+
+To lift the state up, you need to:
+
+Identify the common ancestor component that will hold the shared state
+Move the state to the common ancestor component
+Pass the state down to its child components as props
+Update the state in the common ancestor component, and pass the updated state back down to its children as props
+By lifting the state up, you can simplify your component tree and improve the maintainability of your application. It also allows you to take advantage of React's unidirectional data flow, making it easier to understand and debug your application.
+
+3. What is Context Provider and Context Consumer?
+   The Context.Provider and Context.Consumer components are part of React's context API, which provides a way to share data and state between components without having to pass props down the component tree.
+
+The Context.Provider component is used to create a context and set its value. You can think of it as a provider of data that can be consumed by other components.
+
+Here is how to use the Context.Provider component:
+
+const MyContext = React.createContext();
+
+function App() {
+const value = { text: 'Hello World' };
+
+return (
+<MyContext.Provider value={value}>
+<MyChildComponent />
+</MyContext.Provider>
+);
+}
+The Context.Consumer component is used to access the value from a context in a child component. It acts as a consumer of data that was provided by a Context.Provider.
+
+Here is how to use the Context.Consumer component:
+
+function MyChildComponent() {
+return (
+<MyContext.Consumer>
+{(value) => <div>{value.text}</div>}
+</MyContext.Consumer>
+);
+}
+By using the Context.Provider and Context.Consumer components, you can share data and state between components without having to pass props down the component tree. This can simplify your component structure and make it easier to reuse components.
+
+4. If you don't pass a value to the provider, does it take the default value?
+
+No, if you don't pass a value to the Context.Provider, it will not have a default value. You must explicitly pass a value to the Context.Provider component in order for it to be accessible to Context.Consumer components.
+
+Here's an example:
+
+const MyContext = React.createContext();
+
+function App() {
+const value = { text: 'Hello World' };
+
+return (
+<MyContext.Provider value={value}>
+<MyChildComponent />
+</MyContext.Provider>
+);
+}
+In this example, the value of MyContext is set to an object with the property text: "Hello World". This value can be accessed by MyChildComponent using a Context.Consumer. If you don't pass a value to the Context.Provider, the value of the context will be undefined, and it will not be accessible to Context.Consumer components.
